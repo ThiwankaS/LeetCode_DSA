@@ -29,35 +29,47 @@ int map_hash(int value, int size)
 void map_insert(Digit *map, int numsSize, int value)
 {
     int index = map_hash(value, numsSize);
-    int i = 0, try = 0;
-    while (i < numsSize)
+    if (map[index].nbr == value)
     {
-        try = (index + i) % (numsSize + 1);
-        if (map[try].nbr == value)
+        map[index].frq++;
+    }
+    else
+    {
+        for (int i = 0; i < numsSize; i++)
         {
-            map[try].frq++;
-            break;
+            int try = (index + i) % (numsSize + 1);
+            if (map[try].nbr == value)
+            {
+                map[try].frq++;
+                break;
+            }
+            else if (map[try].frq == 0)
+            {
+                map[try].nbr = value;
+                map[try].frq++;
+                break;
+            }
         }
-        else if (map[try].frq == 0)
-        {
-            map[try].nbr = value;
-            map[try].frq++;
-            break;
-        }
-        i++;
     }
 }
 
 int map_lookup(Digit *map, int numsSize, int value)
 {
     int index = map_hash(value, numsSize);
-    for (int i = 0; i < numsSize; i++)
+    if (map[index].nbr == value)
     {
-        int try = (index + i) % (numsSize + 1);
-        if (map[try].nbr == value)
-            return map[try].frq;
+        return map[index].frq;
     }
-    return (0);
+    else
+    {
+        for (int i = 0; i < numsSize; i++)
+        {
+            int try = (index + i) % (numsSize + 1);
+            if (map[try].nbr == value)
+                return map[try].frq;
+        }
+        return (0);
+    }
 }
 
 int numberOfSubarrays(int *nums, int numsSize, int k)
