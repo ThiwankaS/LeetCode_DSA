@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -Wl,--dependency-file=CMakeFiles/prog.dir/link.d CMakeFiles/prog.dir/main.cpp.o CMakeFiles/prog.dir/Solution.cpp.o -o prog
