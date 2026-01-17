@@ -1,7 +1,7 @@
 #include "Solution.hpp"
 
 int main(void) {
-    std::vector<int> nums = { 1,2,3 };
+    std::vector<int> nums = { 1,2,1,2,1 };
     int k = 3;
 
     Solution s;
