@@ -1,9 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 #include <unordered_map>
-#include <vector>
 #include <string>
 
 class Solution {
