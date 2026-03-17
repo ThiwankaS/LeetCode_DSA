@@ -1,0 +1,8 @@
+#pragma once
+
+#include <vector>
+
+class Solution {
+    public:
+        int findLucky(std::vector<int>& arr);
+};
