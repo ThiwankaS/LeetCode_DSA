@@ -18,6 +18,9 @@ bool Solution::isPalindrome(ListNode* head) {
     ListNode* tail = nullptr;
     ListNode* middle = head;
 
+    // traversing through the linked list 
+    // slow pointer will stop at the middle of the linked list
+    // creting a reversed linked list simultaniously using tail and middle pointers
     while(fast && fast->next) {
         fast = fast->next->next;
         slow = slow->next;
@@ -30,11 +33,15 @@ bool Solution::isPalindrome(ListNode* head) {
     ListNode* revPtr = tail;
     ListNode* fwdPtr = slow;
 
+    // if the linked list has odd no of nodes, then fast is not nullptr
     if(fast && fwdPtr) {
         fwdPtr = fwdPtr->next;
     }
 
+    // trversing the linked list from the middle to start using revPtr 
+    // traversing the linked list from middle to end using fwdPtr 
     while(revPtr && fwdPtr) { 
+        // if the corresponding values of revPtr node and fwdPtr, the liked list is not a palindrome 
         if(fwdPtr->val != revPtr->val) {
             return (false);
         }
