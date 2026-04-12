@@ -1,40 +1,31 @@
 #pragma once
+#include <memory>
 
 struct Node {
     int val;
-    Node* next;
+    std::unique_ptr<Node> next;
     Node* prev;
     Node() : val(0), next(nullptr), prev(nullptr) {}
     Node(int x) : val(x), next(nullptr), prev(nullptr) {}
 };
 
 class MyLinkedList {
-    private:
-        int size;
-        Node* head;
-        Node* tail;
     public:
+        int size;
+        std::unique_ptr<Node> head;
+        Node* tail;
+
         MyLinkedList() : size(0), head(nullptr), tail(nullptr) {}
 
         MyLinkedList(int value) {
-            this->head = this->tail = new Node(value);
-            size = 1;
-        }
-
-        ~MyLinkedList() {
-            Node* current = this->head;
-
-            while(current) {
-                Node* nextNode = current->next;
-                current->next = nullptr;
-                delete current;
-                current = nextNode;
-            }
+            this->head = std::make_unique<Node>(value);
+            this->tail = head.get();
+            this->size = 1;
         }
 
         int get(int idex);
         void addAtHead(int value);
         void addAtTail(int value);
         void addAtIndex(int index, int value);
-        void deleteAtIndex(int index);
+       void deleteAtIndex(int index);
 };
