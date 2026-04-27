@@ -38,5 +38,6 @@ std::string Solution::predictPartyVictory(std::string& senate) {
         }
     }
 
+    // whoever still has one senate with voting rights will win
     return qR.empty() ? "Dire" : "Radiant"; 
 }
