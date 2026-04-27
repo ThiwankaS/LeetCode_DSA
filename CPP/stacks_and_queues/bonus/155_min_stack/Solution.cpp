@@ -1,34 +1,25 @@
 #include "Solution.hpp"
-#include <deque>
-
-int MinStack::calculate(std::stack<int> temp) {
-    std::deque<int> trace;
-
-    while(!temp.empty()) {
-        while(!trace.empty() && (trace.back() > temp.top())) {
-            trace.pop_back();
-        }
-        trace.push_back(temp.top());
-        temp.pop();
-    }
-
-    return trace.front();
-}
+#include <algorithm>
+#include <utility>
 
 void MinStack::push(int val) {
-    data.push(val);
-    min = calculate(data);
+    data.push(std::make_pair(val, min));
+    min = std::min(min, val);
 }
 
 int MinStack::pop() {
-    int value = data.top();
+    int value = data.top().first;
+    
+    if(min < data.top().second) {
+        min = data.top().second;
+    }
+
     data.pop();
-    min = calculate(data);
     return value;
 }
 
 int MinStack::top() {
-    return data.top();
+    return data.top().first;
 }
 
 int MinStack::getMin() {
