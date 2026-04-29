@@ -28,7 +28,7 @@ std::vector<int> Solution::asteroidCollision(const std::vector<int> asteroid) {
             }
         }
 
-        // case asteroid srevived the collision
+        // case asteroid servived the collision
         if(!destroyed) {
             stack.push_back(ast);
         }
